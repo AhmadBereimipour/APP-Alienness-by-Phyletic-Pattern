@@ -26,3 +26,42 @@ python -m venv .venv
 .venv\Scripts\activate
 # macOS/Linux:
 source .venv/bin/activate
+
+pip install -r requirements.txt
+
+python download_relatives.py
+python genomic_map.py
+# then run downstream analysis scripts as needed
+
+Inputs and outputs (high-level)
+
+Inputs
+
+RefSeq/NCBI metadata (e.g., assembly summaries / FTP links)
+
+Protein FASTA files (*.faa or *.faa.gz) for target and relatives
+
+Typical outputs
+
+Organized relatives database by taxonomic level
+
+Phyletic pattern tables (presence/absence profiles)
+
+Candidate lists highlighting “recent-like” phyletic signatures
+
+Optional clustering/plots
+
+Recommended repository practice
+
+This repo should remain lightweight:
+
+✅ keep code + docs + small examples
+
+❌ avoid committing large downloaded datasets (*.faa.gz) and large generated outputs (*.tsv)
+
+Use .gitignore to prevent accidental uploads.
+
+Citation
+
+If you use or build on this repository in academic work, please cite the repository and acknowledge the contributing lab/team.
+
