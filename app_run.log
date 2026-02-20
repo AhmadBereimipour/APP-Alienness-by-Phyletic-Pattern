@@ -1,0 +1,29 @@
+
+Input file type: MultiFASTA.
+
+
+MultiFASTA located
+
+Total number of CPU cores detected: 12
+
+Taxonomic database imported....
+
+Query sequence file imported....
+
+Output filename prefix: NC_004088
+
+Query taxonomic lineage imported....
+species_1_Accession_no_species.txt exists
+genus_1_Accession_no_species.txt exists
+family_1_Accession_no_species.txt exists
+species_2_Accession_no_species.txt exists
+genus_2_Accession_no_species.txt exists
+family_2_Accession_no_species.txt exists
+
+Taxonomic database logged....
+
+Extracted speciesID and taxID for the genome....
+
+Genome download started....
+
+At species level (inclusion)
