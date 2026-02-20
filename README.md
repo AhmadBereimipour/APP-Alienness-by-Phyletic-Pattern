@@ -1,67 +1,132 @@
 # APP — Alienness by Phyletic Pattern
 
-A prototype/teaching pipeline for detecting **alienness (HGT candidates)** using **phyletic pattern analysis** across taxonomic levels (species/genus/family), starting from RefSeq protein FASTA datasets.
-
-> **Scope note (important):** This repository is a correct and reproducible pipeline for **small–medium genome sets** (tens to hundreds).  
-> Scaling to **tens of thousands (e.g., 40–50k genomes)** requires replacing BLAST-style steps with **DIAMOND/MMseqs2**, adding a workflow manager (Snakemake/Nextflow), and running on HPC.
+A reproducible bioinformatics pipeline for detecting horizontal gene transfer (HGT) candidate genes using multi-level phyletic pattern analysis across taxonomic groups (species, genus, and family) based on RefSeq proteomes.
 
 ---
 
-## What this repository contains
+## Overview
 
-- `download_relatives.py` — download and organize “relative” proteomes from NCBI/RefSeq metadata  
-- `genomic_map.py` — generate genome/protein mapping utilities  
-- `scripts/` — helper scripts (unzip, preprocessing, etc.)
-- `database/` — supporting metadata/resources used by the pipeline  
-- `APP_methodology.png` — high-level workflow diagram
+APP (Alienness by Phyletic Pattern) is a prototype pipeline designed to:
+
+- Download and organize related proteomes from RefSeq
+- Construct multi-level phyletic presence/absence profiles
+- Identify genes with atypical taxonomic distribution
+- Highlight potential HGT (alienness) candidates
+- Generate genome-level summaries and clustering outputs
+
+This repository represents a validated and structured implementation suitable for research prototyping and educational use.
 
 ---
 
-## Quick start
+## Scope and Scaling
 
-### 1) Create an environment
+This repository is designed for:
+
+- Small to medium genome collections (tens to hundreds of genomes)
+
+Scaling to very large datasets (e.g., 40,000–50,000 genomes) requires:
+
+- Replacing BLAST-style steps with DIAMOND or MMseqs2
+- Parallelized workflow managers (Snakemake or Nextflow)
+- HPC infrastructure
+- Optimized storage and I/O handling
+
+This repository provides the architectural foundation for such scaling.
+
+---
+
+## Repository Structure
+
+```
+database/               Supporting metadata resources
+scripts/                Helper and preprocessing scripts
+download_relatives.py   Proteome retrieval module
+genomic_map.py          Genome mapping utilities
+APP.pl                  Original APP implementation
+APP_methodology.png     Workflow diagram
+LICENSE                 MIT license
+README.md               Project documentation
+```
+
+---
+
+## Installation
+
+### 1. Create a virtual environment
+
 ```bash
 python -m venv .venv
-# Windows:
+```
+
+Activate:
+
+Windows:
+```bash
 .venv\Scripts\activate
-# macOS/Linux:
+```
+
+Linux/macOS:
+```bash
 source .venv/bin/activate
+```
 
+---
+
+### 2. Install dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-python download_relatives.py
-python genomic_map.py
-# then run downstream analysis scripts as needed
+---
 
-Inputs and outputs (high-level)
+## Typical Workflow
 
-Inputs
+1. Retrieve lineage metadata from RefSeq
+2. Download related proteomes
+3. Organize FASTA structure
+4. Construct phyletic presence/absence matrices
+5. Identify genes with atypical distribution
+6. Generate summary outputs and visualizations
 
-RefSeq/NCBI metadata (e.g., assembly summaries / FTP links)
+---
 
-Protein FASTA files (*.faa or *.faa.gz) for target and relatives
+## Inputs
 
-Typical outputs
+- RefSeq assembly metadata
+- Protein FASTA files (`*.faa` or `*.faa.gz`)
+- Taxonomic lineage information
 
-Organized relatives database by taxonomic level
+---
 
-Phyletic pattern tables (presence/absence profiles)
+## Outputs
 
-Candidate lists highlighting “recent-like” phyletic signatures
+- Organized proteome structure
+- Phyletic pattern tables
+- Candidate alienness gene lists
+- Optional clustering summaries and plots
 
-Optional clustering/plots
+---
 
-Recommended repository practice
+## Best Practices
 
-This repo should remain lightweight:
+This repository intentionally excludes:
 
-✅ keep code + docs + small examples
+- Large `.faa.gz` proteome files
+- Large generated `.tsv` outputs
+- Log files
 
-❌ avoid committing large downloaded datasets (*.faa.gz) and large generated outputs (*.tsv)
+Use `.gitignore` to prevent committing generated data.
 
-Use .gitignore to prevent accidental uploads.
+---
 
-Citation
+## License
 
-If you use or build on this repository in academic work, please cite the repository and acknowledge the contributing lab/team.
+This project is released under the MIT License.  
+See the LICENSE file for details.
 
+---
+
+## Citation
+
+If you use this repository in academic work, please cite the repository and acknowledge the contributing laboratory.
